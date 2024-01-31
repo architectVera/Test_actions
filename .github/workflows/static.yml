@@ -40,7 +40,7 @@ jobs:
               set -euo pipefail
               sudo apt update && sudo apt install -y openssh-client
               mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-              ls -la
+              cat ~/.ssh/id_rsa
               # ssh -p 22 ${{ secrets.REMOTE_SERVER_USERNAME }}@${{ secrets.REMOTE_SERVER_HOST }} /bin/bash -s << EOT
               # set -euxo pipefail
               # ls -la
