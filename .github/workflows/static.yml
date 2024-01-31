@@ -46,7 +46,6 @@ jobs:
               # set -euxo pipefail
               sudo docker stop test-actions
               sudo docker rm $(sudo docker ps -a -q)
-              set -euxo pipefail
               sudo docker pull vera23/test-actions:latest
               sudo docker run -d --name test-actions -p 80:80 vera23/test-actions:latest
               EOT
