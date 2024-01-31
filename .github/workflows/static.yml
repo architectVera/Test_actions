@@ -55,4 +55,3 @@ jobs:
               sudo docker rm -f test-actions
               sudo docker pull vera23/test-actions:latest
               sudo docker run -d --name test-actions -p 80:80 vera23/test-actions:latest
-
