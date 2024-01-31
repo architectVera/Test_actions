@@ -44,6 +44,6 @@ jobs:
               
               ssh -oBatchMode=yes -p 22 vera@89.66.142.90 /bin/bash -s << EOT
               set -euxo pipefail
-              docker pull vera23/test-actions:latest
-              docker run -d --name test-actions -p 80:80 vera23/test-actions:latest
+              sudo docker pull vera23/test-actions:latest
+              sudo docker run -d --name test-actions -p 80:80 vera23/test-actions:latest
               EOT
