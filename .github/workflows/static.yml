@@ -44,3 +44,4 @@ jobs:
                 script: |
                   docker pull vera23/test-actions:latest
                   docker run -d -p 80:80 --name test-action vera23/test-actions:latest
+                 # commit
