@@ -37,7 +37,7 @@ jobs:
 
           - name: Copy docker-compose.yml to remote server
             run: |
-              apt update && apt install -y rsync openssh-client
+              # apt update && apt install -y rsync openssh-client
               set -a && eval "${{ env.REMOTE }}" && set +a && mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 
               # ssh -p ${HOST_PORT:-22} ${USER_NAME}@${HOST_NAME} /bin/bash -s << EOT
