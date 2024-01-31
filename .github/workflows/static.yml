@@ -12,7 +12,7 @@ jobs:
             # - name: Checkout Repository
             #   uses: actions/checkout@v4
             
-            # - name: Build and Push Docker image
+            # - name: Build and Push Docker images
             #   env:
             #     DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
             #     DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -44,6 +44,7 @@ jobs:
               
               ssh -oBatchMode=yes -p 22 vera@89.66.142.90 /bin/bash -s << EOT
               set -euxo pipefail
+              docker stop test-actions
               sudo docker pull vera23/test-actions:latest
               sudo docker run -d --name test-actions -p 80:80 vera23/test-actions:latest
               EOT
