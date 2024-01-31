@@ -42,6 +42,6 @@ jobs:
                 username: ${{ secrets.REMOTE_SERVER_USERNAME }}
                 password: ${{ secrets.REMOTE_SERVER_PASSWORD }}
                 script: |
-                  docker pull vera23/test-actions:latest
-                  docker run -d -p 80:80 --name test-action vera23/test-actions:latest
+                  sudo docker pull vera23/test-actions:latest
+                  sudo docker run -d -p 80:80 --name test-action vera23/test-actions:latest
                  # commit
