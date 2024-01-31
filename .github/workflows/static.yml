@@ -36,13 +36,11 @@ jobs:
                 tags: vera23/test-actions:latest
 
             - name: Copy docker-compose.yml to remote server
-              uses: appleboy/ssh-action@master
-              with:
-                host: ${{ secrets.REMOTE_SERVER_HOST }}
-                username: ${{ secrets.REMOTE_SERVER_USERNAME }}
-                password: ${{ secrets.REMOTE_SERVER_PASSWORD }}
                 run: |
+                  # apt update && apt install -y rsync openssh-client
+                  set -a && eval "${{ env.REMOTE }}" && set +a && mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
+                  ssh -p ${HOST_PORT:-22} ${USER_NAME}@${HOST_NAME} /bin/bash -s << EOT
+                  set -euxo pipefail
                   ls -la
-                #   sudo docker pull vera23/test-actions:latest
-                #   sudo docker run -d -p 80:80 --name test-action vera23/test-actions:latest
-                #  # commit111
+                  EOT

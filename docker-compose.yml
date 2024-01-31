@@ -3,4 +3,4 @@ services:
   your-service-name:
     image: vera23/test-actions:latest
     ports:
-      - "80:80"
+      - "80:8080"
