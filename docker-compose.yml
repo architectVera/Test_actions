@@ -1,0 +1,6 @@
+version: '3'
+services:
+  your-service-name:
+    image: vera23/test-actions:latest
+    ports:
+      - "80:80"
