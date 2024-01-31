@@ -6,8 +6,8 @@ on:
 
 jobs:
     publish:
-        runs-on: ubuntu-latest
-        
+        # runs-on: ubuntu-latest
+        runs-on: self-hosted
         steps:
             # - name: Checkout Repository
             #   uses: actions/checkout@v4
@@ -35,15 +35,24 @@ jobs:
             #     push: true
             #     tags: vera23/test-actions:latest
 
-          - name: Copy docker-compose.yml to remote server
+          # - name: Copy docker-compose.yml to remote server
+          #   run: |
+          #     set -euo pipefail
+          #     sudo apt update && sudo apt install -y openssh-client
+          #     mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+             
+          #     ssh -oBatchMode=yes -p 22 vera@89.66.142.90 /bin/bash -s << EOT
+          #     set -euxo pipefail
+          #     sudo docker rm -f test-actions
+          #     sudo docker pull vera23/test-actions:latest
+          #     sudo docker run -d --name test-actions -p 80:80 vera23/test-actions:latest
+          #     EOT
+
+
+          - name: test
             run: |
               set -euo pipefail
-              sudo apt update && sudo apt install -y openssh-client
-              mkdir -p ~/.ssh && chmod 700 ~/.ssh && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config && echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-             
-              ssh -oBatchMode=yes -p 22 vera@89.66.142.90 /bin/bash -s << EOT
-              set -euxo pipefail
               sudo docker rm -f test-actions
               sudo docker pull vera23/test-actions:latest
               sudo docker run -d --name test-actions -p 80:80 vera23/test-actions:latest
-              EOT
+
